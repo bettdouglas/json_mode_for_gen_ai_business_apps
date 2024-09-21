@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Harnessing Chat Completions API and JSON-mode to build GenAI applications</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/black.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <!-- Custom styling and tweaks -->
+    <link rel="stylesheet" href="out/revealjs-starter.css" />
+
+    <script src="js/reveal.js"></script>
+    <!-- Plugins -->
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>Harnessing Chat Completions API and JSON-mode to build GenAI applications</h2>
+          <aside class="notes"></aside>
+        </section>
+        <section data-markdown="index.md"></section>
+      </div>
+    </div>
+    <script>
+      Reveal.configure({
+        keyboard: {
+          40: "next",
+          38: "prev",
+        },
+      });
+      Reveal.initialize({
+        hash: true,
+        transition: "none",
+        history: "true",
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
