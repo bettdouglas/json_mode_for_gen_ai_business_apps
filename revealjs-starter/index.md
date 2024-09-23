@@ -1,7 +1,12 @@
----
+<!-- ---
+Author: Douglas Bett
+title: Harnessing JSON Schema and Chat Completions API to get reliable & structured LLM outputs. 
+
+--- -->
 
 ## 1. Introduction
-<center>Talking with Large Language Models. </center>
+Talking with Large Language Models.
+> Harnessing JSON Schema and Chat Completions API to get reliable & structured LLM outputs. 
 ---
 
 ## 2. Imagine a house finding assistant.
@@ -11,7 +16,7 @@ Given a query like:
 ---
 
 ## 2. Imagine a house finding assistant.
-Get a response like 
+You'd want to get a response like:
 ```json
 {
   "minBedrooms": 0,
@@ -25,10 +30,8 @@ Get a response like
 
 ## 
 > A house with a minimum price of KSH 50,000, without a guest room and has 2 bedrooms
----
 
-##
-Get a response like
+You'd want to get a response like:
 ```json
 {
   "minPrice": 50000,
@@ -44,7 +47,12 @@ Get a response like
 
 As LLMs can generate text, they can also generate JSON.
 - Varies according to model. 
-- OpenAI 4o intr
+- OpenAI 4o introduced Structured Outputs. Giving you a guarantee that your applications can respond in a specific format. 
+---
+
+## 3. JSON, JSON,JSON...
+How do we get that JSON?
+> PROMPTING
 ---
 
 ## 4. Prompting ?
@@ -62,10 +70,19 @@ And that's the only limitation current LLMs are suffering from.  -->
 
 ---
 ## 5. Limitations of LLMs
-- Not being able to run code. 
-- Not being able to get access to real-time data. 
+- Not being able to perform tasks e.g run code etc.  
+- Not being able to get access to real-time/private data. 
 - Not understanding what the user wants due to poorly typed prompts. 
 <!-- Initial ChatGPT days -->
+---
+
+## 5. Limitations of LLMs
+- ~~Not being able to perform tasks e.g run code etc.~~
+- ~~Not being able to get access to real-time/private data.~~
+- ~~Not understanding what the user wants due to poorly typed prompts.~~
+- ~~No ability to remember the previous interactions~~
+
+> All these are fixed using the Chat Completions API
 ---
 
 ## 6. Overview of Chat Completions API
@@ -74,13 +91,13 @@ And that's the only limitation current LLMs are suffering from.  -->
 <center> Designed & made popular by OpenAI </center>
 ---
 
-## 7. Overview of Chat Completions API
+## 6. Overview of Chat Completions API
 
 - Enables conversational interactions with language models
 - Takes a list of messages as input and returns a message
 ---
 
-## 8. Overview of Chat Completions API
+## 6. Example of Chat Completions API request
 
 ```python
 from openai import OpenAI
@@ -120,7 +137,9 @@ response = client.chat.completions.create(
 - Persists throughout the conversation
 - Sets rules, guidelines, and persona for the AI
 
-Example:
+---
+
+### System Messages Example
 ```json
 [
   {
@@ -137,7 +156,6 @@ You'll return a JSON message with the format
 }}
 If a filter is not requested, set the field as null."
   },
-  ...
 ]
 ```
 ---
@@ -187,7 +205,9 @@ Example:
 - LLM Configuration
 - Output parsers
 
-## Langchain Implementations 
+---
+
+## Langchain Implementations in various languages
 - Python -> https://python.langchain.com/
 - Javascript -> https://js.langchain.com/
 - Flutter & Dart -> https://langchaindart.dev
@@ -235,7 +255,7 @@ final chatModel = ChatOpenAI(
 ```
 ---
 
-## Talk to the LLM
+## Talk to the LLM through langchain
 ```dart
 final chain = prompt.pipe(chatModel).pipe(JsonOutputParser());
 final response = await chain.invoke({'query': '2 bedroomed houses near a main road'});
@@ -263,7 +283,7 @@ We need to let the LLM know what are the outputs we're expecting.
 
 ---
 
-## JSON Schema
+## JSON Schema to the rescue
 > A JSON schema definition is a JSON object that defines the structure and data types of a JSON object, including the properties it should contain, their data types, and any constraints or validations that should be applied.
 
 ---
@@ -414,7 +434,7 @@ Enabling you to handle expected inputs & outputs.
 ```
 ---
 
-## Enforcing JSON Schema with Structured Outputs
+## Enforcing JSON Schema with Langchain
 ```dart
 final chatModel = ChatOpenAI(
   apiKey: '---',
@@ -503,7 +523,7 @@ Show listings with a minimum price of 3000, a maximum price of 6000, at least 2 
 - If the model doesn't support JSON Mode, pass the JSON schema and threaten the LLM
 ---
 ##  Q&A
-Questions from the audience?
+Questions please ...
 
 ---
 ## Key Points
@@ -512,3 +532,4 @@ Questions from the audience?
 - Power of Chat Completions API
 - Crucial role of different message types
 - Overcoming memory limitations with assistant messages
+---
