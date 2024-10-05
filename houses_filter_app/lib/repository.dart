@@ -33,6 +33,7 @@ class HousesRepository {
       maxParking: filterParams['maxParking'],
       prefarea: filterParams['prefarea'],
       furnishingstatus: filterParams['furnishingstatus'],
+      bedrooms: filterParams['bedrooms'],
     );
   }
 
@@ -62,7 +63,7 @@ class HousesRepository {
       if (maxPrice != null && house.price > maxPrice) return false;
       if (minArea != null && house.area < minArea) return false;
       if (maxArea != null && house.area > maxArea) return false;
-      if (bedrooms != null && house.bedrooms == bedrooms) return true;
+      if (bedrooms != null && house.bedrooms != bedrooms) return false;
       if (minBedrooms != null && house.bedrooms < minBedrooms) return false;
       if (maxBedrooms != null && house.bedrooms > maxBedrooms) return false;
       if (bathrooms != null && house.bathrooms != bathrooms) return false;

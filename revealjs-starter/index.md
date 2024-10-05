@@ -31,7 +31,6 @@ You'd want to get a response like:
 ## 
 > A house with a minimum price of KSH 50,000, without a guest room and has 2 bedrooms
 
-You'd want to get a response like:
 ```json
 {
   "minPrice": 50000,
@@ -467,7 +466,7 @@ final chatModel = ChatOpenAI(
 ---
 
 ## Examples with JSON schema enforced
-Show listings with a minimum price of 1000, a maximum price of 5000, at least 2 bedrooms, 2 bathrooms, and an area of at least 1000 square feet, located near a main road.
+Show me listings with a minimum price of 1000, a maximum price of 5000, at least 2 bedrooms, 2 bathrooms, and an area of at least 1000 square feet, located near a main road.
 
 ```json
 {

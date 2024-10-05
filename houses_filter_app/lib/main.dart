@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:houses_filter/house_card.dart';
 import 'package:houses_filter/models.dart';
 import 'package:houses_filter/search_provider.dart';
+import 'package:rxdart/rxdart.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -34,13 +37,50 @@ class HousesPage extends ConsumerStatefulWidget {
 
 class _HousesPageState extends ConsumerState<HousesPage> {
   final controller = TextEditingController();
+  final _searchInputStreamController = StreamController<String>();
+
+  @override
+  void initState() {
+    _searchInputStreamController.stream
+        .throttleTime(const Duration(seconds: 2))
+        .listen((input) {
+      ref.read(searchStateProvider.notifier).search(input);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(searchStateProvider);
     final notifier = ref.read(searchStateProvider.notifier);
     return Scaffold(
-      appBar: AppBar(title: const Text('House Finder')),
+      appBar: AppBar(
+        title: const Text('House Finder'),
+        centerTitle: true,
+        actions: [
+          state.maybeWhen(
+            orElse: () => const SizedBox(),
+            loaded: (houses) => CircleAvatar(
+              backgroundColor: Colors.white,
+              child: Text('${houses.length}'),
+            ),
+            loading: (houses) => houses != null
+                ? CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Text('${houses.length}'),
+                  )
+                : const SizedBox(),
+          ),
+          const SizedBox(width: 8),
+        ],
+        // bottom: const PreferredSize(
+        //   preferredSize: Size.fromHeight(30),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [],
+        //   ),
+        // ),
+      ),
       body: Column(
         children: [
           Expanded(
@@ -77,12 +117,9 @@ class _HousesPageState extends ConsumerState<HousesPage> {
             minLines: 3,
             maxLines: 10,
             controller: controller,
-            onSubmitted: (value) {
-              if (controller.text.isNotEmpty) {
-                notifier.search(controller.text);
-              }
-            },
+            onChanged: _searchInputStreamController.add,
             decoration: InputDecoration(
+              hintText: 'Describe your ideal house here...',
               suffixIcon: state.maybeWhen(
                 orElse: () => IconButton(
                   onPressed: () {

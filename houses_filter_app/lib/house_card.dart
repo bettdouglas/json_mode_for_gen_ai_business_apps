@@ -30,7 +30,7 @@ class HouseTile extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const Divider(color: Colors.black),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
