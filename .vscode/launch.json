@@ -5,21 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "houses_filter_app",
-            "cwd": "houses_filter_app",
+            "name": "house_finding_assistant_app",
+            "cwd": "house_finding_assistant_app",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "houses_filter_app (profile mode)",
-            "cwd": "houses_filter_app",
+            "name": "house_finding_assistant_app (profile mode)",
+            "cwd": "house_finding_assistant_app",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "houses_filter_app (release mode)",
-            "cwd": "houses_filter_app",
+            "name": "house_finding_assistant_app (release mode)",
+            "cwd": "house_finding_assistant_app",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
