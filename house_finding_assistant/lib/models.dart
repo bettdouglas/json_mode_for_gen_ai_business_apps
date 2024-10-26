@@ -99,3 +99,26 @@ extension HouseExtensions on House {
     return area >= minArea && area <= maxArea;
   }
 }
+
+/// Represents the different states of a search operation for houses.
+@freezed
+class SearchState with _$SearchState {
+  /// Initial state before any search is performed
+  const factory SearchState.initial() = _Initial;
+
+  /// Loading state with optional previous results
+  const factory SearchState.loading({
+    List<House>? houses,
+  }) = _Loading;
+
+  /// Successfully loaded search results
+  const factory SearchState.loaded({
+    required List<House> houses,
+  }) = _Loaded;
+
+  /// Error state with error message and optional previous results
+  const factory SearchState.error({
+    required String error,
+    List<House>? houses,
+  }) = _Error;
+}

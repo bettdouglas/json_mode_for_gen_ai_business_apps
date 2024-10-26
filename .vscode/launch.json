@@ -6,20 +6,20 @@
     "configurations": [
         {
             "name": "house_finding_assistant_app",
-            "cwd": "house_finding_assistant_app",
+            "cwd": "house_finding_assistant",
             "request": "launch",
             "type": "dart"
         },
         {
             "name": "house_finding_assistant_app (profile mode)",
-            "cwd": "house_finding_assistant_app",
+            "cwd": "house_finding_assistant",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
             "name": "house_finding_assistant_app (release mode)",
-            "cwd": "house_finding_assistant_app",
+            "cwd": "house_finding_assistant",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

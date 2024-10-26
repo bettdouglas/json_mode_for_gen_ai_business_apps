@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:faker/faker.dart';
 import 'package:fast_csv/csv_converter.dart';
 import 'package:flutter/services.dart';
@@ -27,4 +29,9 @@ Future<List<House>> loadHousesFromAssets() async {
       address: Faker().address,
     );
   }).toList();
+}
+
+String getPrettyJSONString(Map<String, dynamic> filters) {
+  const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+  return encoder.convert(filters);
 }
